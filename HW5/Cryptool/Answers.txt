@@ -1,0 +1,5 @@
+Q1.IV )
+By changing a byte of answer , I got the "Invalid Signature" message from Cryptool.
+
+Q2.II)
+Low encryption speed is one of the main drawbacks of Public-key cryptography. Their speed is about 1000 times slower than symmetric Algorithms.In practice Hybrid systems are used. We use asymmetric algorithms for key exchange and digital signature and use symmetric algorithms for encryption of data.
