@@ -1,82 +1,77 @@
-This repository contains solutions and implementations related to various cryptographic algorithms and concepts, based on assignments from the course Understanding Cryptography. Each homework focuses on specific cryptographic topics and includes both theoretical proofs and practical programming tasks.
+# 🔐 Cryptography — From Caesar to Elliptic Curves
 
-Repository Contents
+> *I didn't just study how encryption works. I broke it, rebuilt it, and proved why it holds.*
 
-Homework 1
+This repo covers the full arc of modern cryptography — classical ciphers, symmetric encryption, public-key infrastructure, and digital signatures — implemented, analysed, and attacked hands-on. Built during my **Basic Cryptography** course at Isfahan University of Technology, using *Understanding Cryptography* (Paar & Pelzl) as the backbone.
 
-LFSRs and Stream Ciphers
+---
 
-Caesar, Substitution, Vigenère, and One-Time Pad encryption exercises
+## ⚡ What's Actually In Here
 
-Using CrypTool for practical cryptographic analysis
+### 🔑 Known-Plaintext Attack on an LFSR Stream Cipher
+Given a ciphertext and a partial known plaintext, I recovered the full keystream via XOR, then reconstructed the **LFSR feedback polynomial** by setting up a linear system and solving it with **Gaussian elimination** — fully implemented in Python from scratch.
 
-Homework 2
+> `cipher.py` · `gauss_jordan.py` — LFSR cryptanalysis pipeline
 
-Detailed analysis of DES (Data Encryption Standard)
+---
 
-Examination of weak and semi-weak keys in DES
+### 🧱 DES Internals — Pulled Apart
+Deep-dive into the Data Encryption Standard: S-box/P-box mechanics, **key schedule analysis**, weak and semi-weak key identification, and empirical measurement of the **avalanche effect** (how a 1-bit flip cascades through all 16 rounds). Compared against AES diffusion properties side-by-side.
 
-Avalanche and completeness effects in DES
+---
 
-AES diffusion properties
+### 🔄 AES Block Cipher Modes — All Six
+Implemented and compared **ECB, CBC, OFB, CFB, and CTR** modes on AES. Analysed security properties of each: error propagation, IV reuse vulnerabilities, parallelizability, and why ECB should never be used for anything real.
 
-Homework 3
+---
 
-Implementation of block cipher operational modes: ECB, CBC, OFB, CFB, CTR using AES
+### 🔓 Public-Key Cryptography — DH, ElGamal, RSA
+- **Diffie-Hellman Key Exchange**: parameter selection, discrete logarithm hardness, man-in-the-middle exposure
+- **ElGamal encryption**: primitive root computation, full encrypt/decrypt pipeline
+- **RSA**: key generation, modular exponentiation, practical implementation in CrypTool
+- **Primality testing**: Fermat test vs. **Miller-Rabin** — experimentally compared on prime, Carmichael, and composite numbers across 18 controlled trials
 
-Euler's Phi Function, Wilson theorem, and number theory proofs
+---
 
-Homework 4
+### 📈 Elliptic Curve Cryptography — ECDLP & Baby-Step Giant-Step
+Computed ECC point addition and scalar multiplication over finite fields, then solved the **Elliptic Curve Discrete Logarithm Problem** using the **Baby-Step Giant-Step algorithm** — the same class of attack that defines ECC security parameters in practice. Also implemented an **ECC-AES hybrid encryption** pipeline (asymmetric key exchange + symmetric bulk encryption).
 
-Diffie-Hellman Key Exchange (DHKE) computations and analysis
+---
 
-ElGamal encryption and primitive roots
+### 🧮 Hash Functions, HMAC & Digital Certificates
+- **SHA-256 HMAC** — implemented from scratch, verified integrity tamper detection
+- **Birthday paradox** collision probability analysis on real hash output sizes
+- **Digital Pay-TV system design** — full protocol sketch using Diffie-Hellman for key distribution and DES for content encryption
+- Client-server programs for **certificate management and key establishment**
+- Signature tamper test: a single-byte change to a signed document triggers `Invalid Signature` — verified experimentally
 
-RSA algorithm and implementation tasks using CrypTool
+---
 
-Homework 5
+## 🛠️ Stack
 
-Elliptic Curve Cryptography (ECC) computations and analysis
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![CrypTool](https://img.shields.io/badge/CrypTool-1%20%2F%202-orange?style=flat-square)
 
-ElGamal and RSA signature schemes
+**Algorithms implemented:** LFSR, Gauss-Jordan elimination, Caesar/Vigenère/OTP, DES, AES (ECB/CBC/OFB/CFB/CTR), DHKE, ElGamal, RSA, Baby-Step Giant-Step, ECC point arithmetic, SHA-256 HMAC
 
-Implementation of Elliptic Curve Discrete Logarithm Problem (ECDLP) via Baby-Step Giant-Step algorithm
+---
 
-Homework 6
+## 📁 Structure
 
-Hash functions and collision probabilities
+```
+HW1/  → Classical ciphers & LFSR cryptanalysis
+HW2/  → DES analysis & AES diffusion
+HW3/  → Block cipher modes of operation
+HW4/  → DH, ElGamal, RSA & primality testing
+HW5/  → ECC, ECDLP, BSGS, digital signatures
+HW6/  → Hash functions, HMAC & certificates
+```
 
-Integrity protection using encryption and MAC
+Each folder: original problem set PDF + written solution + Python code + CrypTool outputs.
 
-Digital Pay-TV system design using Diffie-Hellman and DES
+---
 
-Implementation of HMAC algorithm using SHA256
-
-Client-server programs for key establishment and certificate management
-
-How to Use This Repository
-
-Each homework folder includes:
-
-A PDF of the original assignment
-
-Solution documents with theoretical explanations
-
-Source codes for programming exercises
-
-Instructions and outputs for CrypTool practical exercises
-
-Feel free to explore, use the implementations for educational purposes, and adapt the provided code and methodologies to your own projects.
-
-Tools Used
-
-CrypTool for practical cryptographic demonstrations and analysis
-
-Python for implementations of cryptographic algorithms
-
-Jupyter Notebooks for interactive exploration of cryptographic concepts
-
-Contributions
-
-Contributions and improvements to the solutions or documentation are welcome! Please open an issue or a pull request to contribute.
-
+<div align="center">
+  <sub>Mahyar Onsori</sub>
+</div>
